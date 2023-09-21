@@ -1,6 +1,7 @@
-# studentUrls.py
 from django.urls import path
 from discipline.views.studentView import StudentView
+from discipline.views.taskView import TaskView
+
 
 # Lista de URLs para manipular estudantes
 studentUrls = [

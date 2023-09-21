@@ -18,7 +18,7 @@ class Task(models.Model):
     description = models.CharField(max_length=255, help_text="Digite uma breve descrição da tarefa.")
 
     # Data de entrega da tarefa
-    delivery_date = models.DateField(help_text="Digite a data de entrega da tarefa.")
+    delivery_date = models.DateField(auto_now_add=True)
 
     # Sinalizador para indicar se a tarefa está concluída ou não
     completed = models.BooleanField(default=False, help_text="Marque se a tarefa está concluída.")

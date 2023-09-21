@@ -11,22 +11,27 @@ class DisciplineView(APIView):
 
     Esta classe fornece endpoints para listar, criar, atualizar e excluir disciplinas.
     """
-    
     queryset = Discipline.objects.all()
     serializer_class = DisciplineSerializer
 
-    def get(self, request, format=None):
+    def get(self, request, pk=None, format=None):
         """
-        Retorna a lista de todas as disciplinas.
+        Retorna a lista de todas as disciplinas ou os detalhes de uma disciplina específica.
 
         :param request: Objeto de solicitação HTTP.
+        :param pk: (Opcional) UUID da disciplina desejada.
         :param format: Formato de resposta desejado (por padrão, None).
-        :return: Resposta JSON com a lista de disciplinas.
+        :return: Resposta JSON com a lista de disciplinas ou detalhes da disciplina.
         """
-        discipline = Discipline.objects.all()
-        serializer = DisciplineSerializer(discipline, many=True)
+        if pk is None:
+            discipline = Discipline.objects.all()
+            serializer = DisciplineSerializer(discipline, many=True)
+        else:
+            discipline = self.get_object(pk)
+            serializer = DisciplineSerializer(discipline)
+
         return Response(serializer.data)
-        
+
     def get_object(self, pk):
         """
         Obtém uma disciplina específica com base em seu UUID.
@@ -39,20 +44,7 @@ class DisciplineView(APIView):
             return Discipline.objects.get(pk=pk)
         except Discipline.DoesNotExist:
             raise Http404
-        
-    def get_pk(self, request, pk, format=None):
-        """
-        Retorna os detalhes de uma disciplina específica com base em seu UUID.
 
-        :param request: Objeto de solicitação HTTP.
-        :param pk: UUID da disciplina desejada.
-        :param format: Formato de resposta desejado (por padrão, None).
-        :return: Resposta JSON com os detalhes da disciplina.
-        """
-        discipline = self.get_object(pk)
-        serializer = DisciplineSerializer(discipline)
-        return Response(serializer.data)
-    
     def post(self, request, format=None):
         """
         Cria uma nova disciplina.
@@ -82,7 +74,7 @@ class DisciplineView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
     def delete(self, request, pk, format=None):
         """
         Exclui uma disciplina com base em seu UUID.

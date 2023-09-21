@@ -3,7 +3,7 @@ from django.db import models
 
 class Discipline(models.Model):
     """
-    Modelo representando uma disciplina ou curso.
+    Modelo representando uma disciplina.
     """
 
     # Identificador único para a disciplina, gerado como um UUID
@@ -16,7 +16,7 @@ class Discipline(models.Model):
     description = models.CharField(max_length=255, help_text="Digite uma breve descrição da disciplina.")
 
     # Data e hora em que a disciplina foi criada
-    create_at = models.DateTimeField(auto_now_add=True, help_text="Data e hora em que a disciplina foi criada.")
+    create_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         """

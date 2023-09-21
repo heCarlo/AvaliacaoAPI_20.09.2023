@@ -11,22 +11,27 @@ class StudentView(APIView):
 
     Esta classe fornece endpoints para listar, criar, atualizar e excluir estudantes.
     """
-    
     queryset = Student.objects.all()
     serializer_class = StudentSerializer
 
-    def get(self, request, format=None):
+    def get(self, request, pk=None, format=None):
         """
-        Retorna a lista de todos os estudantes.
+        Retorna a lista de todos os estudantes ou os detalhes de um estudante específico.
 
         :param request: Objeto de solicitação HTTP.
+        :param pk: (Opcional) UUID do estudante desejado.
         :param format: Formato de resposta desejado (por padrão, None).
-        :return: Resposta JSON com a lista de estudantes.
+        :return: Resposta JSON com a lista de estudantes ou detalhes do estudante.
         """
-        students = Student.objects.all()
-        serializer = StudentSerializer(students, many=True)
+        if pk is None:
+            students = Student.objects.all()
+            serializer = StudentSerializer(students, many=True)
+        else:
+            student = self.get_object(pk)
+            serializer = StudentSerializer(student)
+
         return Response(serializer.data)
-        
+
     def get_object(self, pk):
         """
         Obtém um estudante específico com base em seu UUID.
@@ -39,20 +44,7 @@ class StudentView(APIView):
             return Student.objects.get(pk=pk)
         except Student.DoesNotExist:
             raise Http404
-        
-    def get_pk(self, request, pk, format=None):
-        """
-        Retorna os detalhes de um estudante específico com base em seu UUID.
 
-        :param request: Objeto de solicitação HTTP.
-        :param pk: UUID do estudante desejado.
-        :param format: Formato de resposta desejado (por padrão, None).
-        :return: Resposta JSON com os detalhes do estudante.
-        """
-        student = self.get_object(pk)
-        serializer = StudentSerializer(student)
-        return Response(serializer.data)
-    
     def post(self, request, format=None):
         """
         Cria um novo estudante.
@@ -82,7 +74,7 @@ class StudentView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
+
     def delete(self, request, pk, format=None):
         """
         Exclui um estudante com base em seu UUID.

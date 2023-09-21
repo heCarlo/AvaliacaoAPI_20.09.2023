@@ -1,7 +1,7 @@
 from django.http import Http404
 from rest_framework.views import APIView
+from discipline.models import Task
 from discipline.serializers.taskSerializer import TaskSerializer
-from discipline.models.taskModel import Task
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -14,18 +14,24 @@ class TaskView(APIView):
     queryset = Task.objects.all()
     serializer_class = TaskSerializer
     
-    def get(self, request, format=None):
+    def get(self, request, pk=None, format=None):
         """
-        Retorna a lista de todas as tarefas.
+        Retorna a lista de todas as tarefas ou os detalhes de uma tarefa específica.
 
         :param request: Objeto de solicitação HTTP.
+        :param pk: (Opcional) UUID da tarefa desejada.
         :param format: Formato de resposta desejado (por padrão, None).
-        :return: Resposta JSON com a lista de tarefas.
+        :return: Resposta JSON com a lista de tarefas ou detalhes da tarefa.
         """
-        tasks = Task.objects.all()
-        serializer = TaskSerializer(tasks, many=True)
+        if pk is None:
+            tasks = Task.objects.all()
+            serializer = TaskSerializer(tasks, many=True)
+        else:
+            task = self.get_object(pk)
+            serializer = TaskSerializer(task)
+
         return Response(serializer.data)
-        
+
     def get_object(self, pk):
         """
         Obtém uma tarefa específica com base em seu UUID.
@@ -39,19 +45,6 @@ class TaskView(APIView):
         except Task.DoesNotExist:
             raise Http404
         
-    def get_pk(self, request, pk, format=None):
-        """
-        Retorna os detalhes de uma tarefa específica com base em seu UUID.
-
-        :param request: Objeto de solicitação HTTP.
-        :param pk: UUID da tarefa desejada.
-        :param format: Formato de resposta desejado (por padrão, None).
-        :return: Resposta JSON com os detalhes da tarefa.
-        """
-        task = self.get_object(pk)
-        serializer = TaskSerializer(task)
-        return Response(serializer.data)
-    
     def post(self, request, format=None):
         """
         Cria uma nova tarefa.

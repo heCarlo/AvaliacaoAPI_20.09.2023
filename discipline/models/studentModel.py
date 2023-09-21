@@ -16,7 +16,7 @@ class Student(models.Model):
     email = models.EmailField(max_length=255, help_text="Digite o endereço de e-mail do estudante.")
 
     # Data e hora em que o estudante foi criado
-    create_at = models.DateTimeField(auto_now_add=True, help_text="Data e hora em que o estudante foi criado.")
+    create_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         """

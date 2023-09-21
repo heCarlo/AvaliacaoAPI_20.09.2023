@@ -1,4 +1,3 @@
-# taskUrls.py
 from django.urls import path
 from discipline.views.taskView import TaskView
 
