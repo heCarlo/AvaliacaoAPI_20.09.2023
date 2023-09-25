@@ -5,8 +5,7 @@ class StudentSerializer(serializers.ModelSerializer):
     """
     Classe de serialização para o modelo Student.
 
-    Este serializador é usado para converter instâncias do modelo Student para o formato JSON
-    e vice-versa ao trabalhar com o Django REST framework.
+    Este serializador é usado para converter instâncias do modelo Student para o formato JSON e vice-versa.
     """
 
     class Meta:

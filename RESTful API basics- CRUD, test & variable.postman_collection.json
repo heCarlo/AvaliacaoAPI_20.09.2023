@@ -1,0 +1,215 @@
+{
+	"info": {
+		"_postman_id": "91363c75-3d56-4edf-a3b8-fe7bc80dcb86",
+		"name": "RESTful API basics- CRUD, test & variable",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "29257951"
+	},
+	"item": [
+		{
+			"name": "Alunos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://127.0.0.1:8000/student/"
+			},
+			"response": []
+		},
+		{
+			"name": "Alunos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Lucas\",\r\n    \"email\": \"lucas@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "127.0.0.1:8000/student/"
+			},
+			"response": []
+		},
+		{
+			"name": "Alunos",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Felipe\",\r\n    \"email\": \"felipe@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "127.0.0.1:8000/student/3eb45d6a-e0ad-4c76-a299-def75dba7616/"
+			},
+			"response": []
+		},
+		{
+			"name": "Alunos",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "127.0.0.1:8000/student/3eb45d6a-e0ad-4c76-a299-def75dba7616/"
+			},
+			"response": []
+		},
+		{
+			"name": "Disciplinas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "127.0.0.1:8000/api/disciplinas/"
+			},
+			"response": []
+		},
+		{
+			"name": "Disciplinas",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"name\": \"Inteligencia Artifial\",\r\n        \"description\": \"Robozinho Robozinho Robozinho\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/discipline/"
+			},
+			"response": []
+		},
+		{
+			"name": "Disciplinas",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"name\": \"Línguagem de Programação\",\r\n        \"description\": \"Java Python JavaScript C\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/discipline/776eac89-b0b6-4f1d-a4b9-50a699d07e2b/"
+			},
+			"response": []
+		},
+		{
+			"name": "Disciplinas",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/discipline/776eac89-b0b6-4f1d-a4b9-50a699d07e2b/"
+			},
+			"response": []
+		},
+		{
+			"name": "Tarefas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8000/task/"
+			},
+			"response": []
+		},
+		{
+			"name": "Tarefas",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Desenvolver API Nest.js\",\r\n    \"description\": \"Eita que negócio doido\",\r\n    \"completed\": true,\r\n    \"student\": \"99af9bc1-4650-4f80-b0c4-4f452782da9b\",\r\n    \"disciplines\": [\r\n        \"4badfbfb-152e-42ab-8065-cc69cc2b32a9\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/task/"
+			},
+			"response": []
+		},
+		{
+			"name": "Tarefas",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Desenvolver API TESTE\",\r\n    \"description\": \"Eita que negócio doido\",\r\n    \"completed\": true,\r\n    \"student\": \"99af9bc1-4650-4f80-b0c4-4f452782da9b\",\r\n    \"disciplines\": [\r\n        \"4badfbfb-152e-42ab-8065-cc69cc2b32a9\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/task/5624154b-041d-42eb-8c8a-c3731372255a/"
+			},
+			"response": []
+		},
+		{
+			"name": "Tarefas",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 6\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://127.0.0.1:8000/task/5624154b-041d-42eb-8c8a-c3731372255a/"
+			},
+			"response": []
+		},
+		{
+			"name": "Associacao_TarefaAluno",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://127.0.0.1:8000/student/99af9bc1-4650-4f80-b0c4-4f452782da9b/tasks/"
+			},
+			"response": []
+		}
+	]
+}

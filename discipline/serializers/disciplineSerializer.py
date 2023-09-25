@@ -5,8 +5,7 @@ class DisciplineSerializer(serializers.ModelSerializer):
     """
     Classe de serialização para o modelo Discipline.
 
-    Este serializador é usado para converter instâncias do modelo Discipline para o formato JSON
-    e vice-versa ao trabalhar com o Django REST framework.
+    Este serializador é usado para converter instâncias do modelo Discipline para o formato JSON e vice-versa ao.
     """
 
     class Meta:
@@ -17,6 +16,3 @@ class DisciplineSerializer(serializers.ModelSerializer):
         """
         model = Discipline  # Especifica o modelo a ser serializado.
         fields = '__all__'  # Especifica que todos os campos do modelo Discipline devem ser incluídos.
-
-    # Validação personalizada adicional ou métodos podem ser adicionados aqui, se necessário.
-
